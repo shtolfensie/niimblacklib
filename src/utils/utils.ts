@@ -1,11 +1,9 @@
-import { Capacitor } from "@capacitor/core";
 import { Validators } from "./validators";
 import { workerSleep } from "./web_worker_sleep";
 
 export interface AvailableTransports {
   webSerial: boolean;
   webBluetooth: boolean;
-  capacitorBle: boolean;
 }
 
 export interface PixelCountResult {
@@ -266,7 +264,6 @@ export class Utils {
    */
   public static getAvailableTransports(): AvailableTransports {
     return {
-      capacitorBle: Capacitor.getPlatform() !== "web",
       webBluetooth: typeof navigator.bluetooth?.requestDevice !== "undefined",
       webSerial: typeof navigator.serial?.requestPort !== "undefined",
     };
